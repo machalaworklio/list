@@ -20,7 +20,7 @@
                     <span :class="$style.number">#{{ list.number }}</span>
                 </div>
                 <div :class="$style.options">
-                    <span :class="$style.date">{{ listDate }}</span>
+                    <span :class="$style.date">{{ list.time }}</span>
                     <img src="./assets/trash.svg" @click="removeList(index)" :class="$style.trashIcon">
                 </div>
                 </li>
@@ -28,11 +28,11 @@
             <h4 v-if="lists.length === 0">Empty list</h4>
         </div>
         <div :class="$style.sort">
-            <div :class="$style.sortByValue">
-                <p>Sort by Value</p>
+            <div :class="$style.sortBy" @click="sortByValue()">
+                <p>Sort by <strong :style="$style.boldText">Value</strong></p>
             </div>
-            <div :class="$style.sortByDate">
-                <p>Sort by Added Date</p>
+            <div :class="$style.sortBy" @click="sortByTime()">
+                <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
             </div>
         </div>
     </div>
@@ -40,29 +40,36 @@
 
 <script lang="ts">
 
-import { ref, defineComponent } from 'vue';
+import { ref, computed, defineComponent } from 'vue';
+import { format, formatDistance, formatRelative, subMinutes } from 'date-fns';
 
 export default defineComponent({
   name: 'App',
   setup () {
       const newList = ref('');
       const newListCount = ref(1);
+      const listDate = formatDistance(new Date(), new Date(), { addSuffix: true });
 
-      const listDate = Date.now() + "minutes ago";
+      interface listsType{
+            content: string,
+            number: number,
+            time: string,
+       }
        
-      const defaultData = [{
-          content: 'Write a blog post',
-          number: 1,
-      }]
+       const valueSort = computed(() => { 
+           return [lists].sort((a, b) => a[lists.number] < b[lists.number] ? -1 : 1);
+        });
+
       //sběr dat
-      const listsData = JSON.parse(localStorage.getItem('lists') as any) || defaultData;
-      const lists = ref(listsData);
+      const listsData = JSON.parse(localStorage.getItem('lists') as any);
+      const lists = ref<listsType[]>(listsData);
 
       function addList () {
           if (newList.value) {
               lists.value.push({
                   content: newList.value,
                   number: newListCount.value,
+                  time: listDate,
               });
               newList.value = '';
               newListCount.value++;
@@ -78,18 +85,20 @@ export default defineComponent({
           const storageData = JSON.stringify(lists.value);
           localStorage.setItem('lists', storageData);
       }
+      
       return {
           lists,
 
           newList,
           newListCount,
           listDate,
+          valueSort,
 
           addList,
           removeList,
-          saveData
+          saveData,
       }
-    }
+    },
 });
 </script>
 
@@ -103,13 +112,15 @@ export default defineComponent({
 }
 .searchBar{
     width: 100%;
-    height: 30px;
-    padding: 5px;
+    height: 40px;
+    padding: 10px;
     outline: none;
+    background: gray;
+    border: none;
 }
 .list{
     padding: 0;
-    margin: 0;
+    margin: 20px 0 0 0;
     width: 100%;
 }
 .listItem{
@@ -120,6 +131,8 @@ export default defineComponent({
     justify-content: space-between;
     border-bottom: 1px solid black;
     &:hover{
+        background: white;
+        border-radius: 5px;
         img{
             display: block;
         }
@@ -143,9 +156,22 @@ export default defineComponent({
     width: 20px;
     margin: 5px 0 0 10px;
     display: none;
+    cursor: pointer;
 }
 .sort{
     width: 150px;
     margin: 100px auto 0 30px;
+}
+.boldText{
+    color: black;
+    margin-left: 5px;
+}
+.sortBy{
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+        background: white;
+    }
 }
 </style>
