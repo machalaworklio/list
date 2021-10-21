@@ -1,13 +1,13 @@
 <template>
   <li :class="$style.listItem">
     <div :class="$style.info">
-      <span :class="$style.content">{{ list.content }}</span>
-      <span :class="$style.number">#{{ list.number }}</span>
+      <span :class="$style.content">{{ content }}</span>
+      <span :class="$style.number">#{{ number }}</span>
     </div>
     <div :class="$style.options">
-      <span :class="$style.date">{{ list.time }}</span>
+      <span :class="$style.date">{{ time }}</span>
       <img
-        src="./assets/trash.svg"
+        src="../assets/trash.svg"
         :class="$style.trashIcon"
         @click="removeList(index)" />
     </div>
@@ -17,18 +17,33 @@
 import { defineComponent } from '@vue/runtime-core';
 export default defineComponent({
   name: 'ListItem',
+  props: {
+    content: {
+      type: String,
+      required: true,
+    },
+    number: {
+      type: Number,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
+  },
 });
 </script>
 <style lang="scss" module>
+@use 'sass/color';
 .listItem {
-  border-bottom: 1px solid $line;
+  border-bottom: 1px solid color.$line;
   display: flex;
   justify-content: space-between;
   list-style: none;
   padding: 10px;
   width: 100%;
   &:hover {
-    background: $activeItem;
+    background: color.$activeItem;
     border-radius: 5px;
     img {
       display: block;

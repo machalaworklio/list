@@ -1,10 +1,6 @@
 <template>
   <form @submit.prevent="addList">
-    <input
-      v-model="newList"
-      name="newList"
-      autocomplete="off"
-      :class="$style.searchBar" />
+    <input name="newList" autocomplete="off" :class="$style.searchBar" />
   </form>
 </template>
 <script>
@@ -14,8 +10,9 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" module>
+@use 'sass/color';
 .searchBar {
-  background: $search;
+  background: color.$search;
   border: none;
   height: 40px;
   outline: none;
