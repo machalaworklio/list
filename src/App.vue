@@ -57,20 +57,22 @@ export default defineComponent({
         // new Date - aktální čas, parseISO
       },
     ]);
-
     // counter
     const newId = computed(
       () => Math.max(...lists.value.map((obj) => obj.number), 0) + 1
       // Math.max - zjistí max. hodnotu (externí pole ...)
       // .map(vnitřní funkce) - metoda co zavolá funkci pro každou položku v array
     );
-    /*
-    const sortValue = computed(() => lists.value.sort((a, b) => a - b));
+    // nelze kopírovat přímo ref ale hodnotu z něj
+    const sortValue = computed(
+      () => [...lists.value].sort((a, b) => a.number - b.number)
+      // copy - ...lists -> musí referovat hodnotu .value
+    );
     // sort
     const sortSearch = computed(() =>
-      lists.value.filter(() => newList.value === lists.value.content)
+      lists.value.filter((obj) => obj.content === newList.value)
     );
-    */
+
     // filter
 
     function addList() {
@@ -101,7 +103,6 @@ export default defineComponent({
 
 <style lang="scss" module>
 @use 'sass/color';
-@use 'sass/global';
 .workspace {
   display: flex;
 }
