@@ -26,20 +26,18 @@
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue';
 import { formatISO } from 'date-fns';
-import SearchBarVue from 'components/SearchBar.vue';
-import ListItemVue from 'components/listItem.vue';
-
+import SearchBar from './components/SearchBar.vue';
+import ListItem from './components/ListItem.vue';
 export default defineComponent({
   name: 'App',
   components: {
-    SearchBar: SearchBarVue,
-    ListItem: ListItemVue,
+    SearchBar,
+    ListItem,
   },
   setup() {
     const newList = ref('');
     const sortByValue = ref<'value' | 'time'>('value');
     sortByValue.value = 'value';
-
     interface listsType {
       content: string;
       number: number;
@@ -79,9 +77,7 @@ export default defineComponent({
     const sortSearch = computed(() =>
       lists.value.filter((obj) => obj.content === newList.value)
     );
-
     // filter
-
     function addList() {
       if (newList.value) {
         lists.value.push({
@@ -95,12 +91,9 @@ export default defineComponent({
     function removeList(index: number) {
       lists.value.splice(index, 1);
     }
-
     return {
       lists,
-
       newList,
-
       addList,
       removeList,
     };
