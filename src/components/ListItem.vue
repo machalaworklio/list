@@ -1,6 +1,7 @@
 <template>
   <li :class="$style.listItem">
     <div :class="$style.info">
+      <span v-if="icon">Exact Match</span>
       <span :class="$style.content">{{ content }}</span>
       <span :class="$style.number">#{{ number }}</span>
     </div>
@@ -9,7 +10,7 @@
       <img
         src="../assets/trash.svg"
         :class="$style.trashIcon"
-        @click="removeList(index)" />
+        @click="$emit('delete', number)" />
     </div>
   </li>
 </template>
@@ -30,7 +31,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    icon: Boolean,
   },
+  emits: ['delete'],
 });
 </script>
 <style lang="scss" module>

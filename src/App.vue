@@ -26,22 +26,24 @@
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue';
 import { formatISO } from 'date-fns';
+import SearchBarVue from 'components/SearchBar.vue';
+import ListItemVue from 'components/listItem.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    SearchBar,
-    ListItem,
+    SearchBar: SearchBarVue,
+    ListItem: ListItemVue,
   },
   setup() {
     const newList = ref('');
-    const sortByValue = ref('value');
-    const sortByTime = ref('time');
+    const sortByValue = ref<'value' | 'time'>('value');
+    sortByValue.value = 'value';
 
     interface listsType {
       content: string;
       number: number;
-      time: number;
+      time: Date;
     }
     // default
     const lists = ref<listsType[]>([
@@ -58,6 +60,7 @@ export default defineComponent({
       },
     ]);
     // counter
+    const a = new Date();
     const newId = computed(
       () => Math.max(...lists.value.map((obj) => obj.number), 0) + 1
       // Math.max - zjistí max. hodnotu (externí pole ...)
@@ -69,7 +72,7 @@ export default defineComponent({
       // copy - ...lists -> musí referovat hodnotu .value
     );
     const sortTime = computed(
-      () => [...lists.value].sort((a, b) => a.time - b.time)
+      () => [...lists.value].sort((a, b) => a.time < b.time)
       // copy - ...lists -> musí referovat hodnotu .value
     );
     // sort

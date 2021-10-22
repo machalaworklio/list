@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="addList">
     <input
-      v-model="newList"
+      :value="newList"
       name="newList"
       autocomplete="off"
       :class="$style.searchBar" />
