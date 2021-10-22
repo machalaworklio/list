@@ -5,6 +5,8 @@
       name="newList"
       autocomplete="off"
       :class="$style.searchBar" />
+    <IconCancel :class="$style.iconCancel" />
+    <IconAdd :class="$style.iconAdd" />
   </form>
 </template>
 <script>

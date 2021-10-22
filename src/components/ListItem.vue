@@ -1,16 +1,13 @@
 <template>
   <li :class="$style.listItem">
     <div :class="$style.info">
-      <span v-if="icon">Exact Match</span>
+      <span v-if="icon"><IconCheck :class="$style.checkIcon"/>Exact Match</span>
       <span :class="$style.content">{{ content }}</span>
       <span :class="$style.number">#{{ number }}</span>
     </div>
     <div :class="$style.options">
       <span :class="$style.date">{{ time }}</span>
-      <img
-        src="../assets/trash.svg"
-        :class="$style.trashIcon"
-        @click="$emit('delete', number)" />
+      <IconTrash :class="$style.trashIcon" @click="$emit('delete', icon)" />
     </div>
   </li>
 </template>
