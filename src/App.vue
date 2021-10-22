@@ -13,10 +13,10 @@
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
     <div :class="$style.sort">
-      <div :class="$style.sortBy" @click="$emit(sortValue)">
+      <div :class="$style.sortBy">
         <p>Sort by <strong :style="$style.boldText">Value</strong></p>
       </div>
-      <div :class="$style.sortBy" @click="$emit(sortTime)">
+      <div :class="$style.sortBy">
         <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
       </div>
     </div>
@@ -33,7 +33,6 @@ export default defineComponent({
     SearchBar,
     ListItem,
   },
-  emits: ['sortValue', 'sortTime'],
   setup() {
     const newList = ref('');
     const sortByValue = ref('value');
@@ -42,19 +41,19 @@ export default defineComponent({
     interface listsType {
       content: string;
       number: number;
-      time: string;
+      time: number;
     }
     // default
     const lists = ref<listsType[]>([
       {
         content: 'hello',
         number: 3,
-        time: formatISO(new Date()),
+        time: new Date(),
       },
       {
         content: 'bye',
         number: 5,
-        time: formatISO(new Date()),
+        time: new Date(),
         // new Date - aktální čas, parseISO
       },
     ]);
@@ -85,7 +84,7 @@ export default defineComponent({
         lists.value.push({
           content: newList.value,
           number: newId.value,
-          time: formatISO(new Date()),
+          time: new Date(),
         });
         newList.value = '';
       }

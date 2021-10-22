@@ -11,6 +11,12 @@
 import { defineComponent } from '@vue/runtime-core';
 export default defineComponent({
   name: 'SearchBar',
+  props: {
+    newList: {
+      type: String,
+      required: true,
+    },
+  },
 });
 </script>
 <style lang="scss" module>
