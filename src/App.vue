@@ -13,10 +13,10 @@
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
     <div :class="$style.sort">
-      <div :class="$style.sortBy">
+      <div :class="$style.sortBy" @click="$emit(sortValue)">
         <p>Sort by <strong :style="$style.boldText">Value</strong></p>
       </div>
-      <div :class="$style.sortBy">
+      <div :class="$style.sortBy" @click="$emit(sortTime)">
         <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
       </div>
     </div>
@@ -26,8 +26,6 @@
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue';
 import { formatISO } from 'date-fns';
-import SearchBar from './components/SearchBar.vue';
-import ListItem from './components/ListItem.vue';
 
 export default defineComponent({
   name: 'App',
@@ -35,8 +33,11 @@ export default defineComponent({
     SearchBar,
     ListItem,
   },
+  emits: ['sortValue', 'sortTime'],
   setup() {
     const newList = ref('');
+    const sortByValue = ref('value');
+    const sortByTime = ref('time');
 
     interface listsType {
       content: string;
@@ -66,6 +67,10 @@ export default defineComponent({
     // nelze kopírovat přímo ref ale hodnotu z něj
     const sortValue = computed(
       () => [...lists.value].sort((a, b) => a.number - b.number)
+      // copy - ...lists -> musí referovat hodnotu .value
+    );
+    const sortTime = computed(
+      () => [...lists.value].sort((a, b) => a.time - b.time)
       // copy - ...lists -> musí referovat hodnotu .value
     );
     // sort
