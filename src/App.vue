@@ -16,14 +16,7 @@
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
-    <div :class="$style.sort">
-      <div :class="$style.sortBy">
-        <p>Sort by <strong :style="$style.boldText">Value</strong></p>
-      </div>
-      <div :class="$style.sortBy">
-        <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
-      </div>
-    </div>
+    <SideBar />
   </div>
 </template>
 
@@ -32,11 +25,13 @@ import { ref, computed, defineComponent } from 'vue';
 // import { formatISO } from 'date-fns';
 import SearchBar from './components/SearchBar.vue';
 import ListItem from './components/ListItem.vue';
+import SideBar from './components/SideBar.vue';
 export default defineComponent({
   name: 'App',
   components: {
     SearchBar,
     ListItem,
+    SideBar,
   },
   setup() {
     const newList = ref('');
@@ -123,21 +118,5 @@ export default defineComponent({
   margin: 20px 0 0 0;
   padding: 0;
   width: 100%;
-}
-.sort {
-  margin: 100px auto 0 30px;
-  width: 150px;
-}
-.boldText {
-  color: color.$text;
-  margin-left: 5px;
-}
-.sortBy {
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 10px;
-  &:hover {
-    background: color.$activeItem;
-  }
 }
 </style>
