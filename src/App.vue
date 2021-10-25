@@ -2,6 +2,7 @@
   <div :class="$style.workspace">
     <div :class="$style.container">
       <SearchBar v-model:newList="newList" />
+      {{ newList }}
       <!--
         // 1: v-model:prop=":value"
         // 2: používáš prop newList, a potřebuju aby jsi pak na ten search bar mohl použít v-model aby to mohlo komunikovat jak parent > child, tak child > parent
@@ -67,6 +68,7 @@ export default defineComponent({
       // Math.max - zjistí max. hodnotu (externí pole ...)
       // .map(vnitřní funkce) - metoda co zavolá funkci pro každou položku v array
     );
+    /*
     // nelze kopírovat přímo ref ale hodnotu z něj
     const sortValue = computed(
       () => [...lists.value].sort((a, b) => a.number - b.number)
@@ -80,6 +82,7 @@ export default defineComponent({
     const sortSearch = computed(() =>
       lists.value.filter((obj) => obj.content === newList.value)
     );
+*/
     // filter
     function addList() {
       if (newList.value) {

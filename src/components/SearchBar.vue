@@ -5,7 +5,11 @@
       name="newList"
       autocomplete="off"
       :class="$style.searchBar"
-      @input="$emit('searchData', $event.target.value)" />
+      @input="$emit('update:newList', $event.target.value)" />
+    <!--
+      1: $emit("emit") - musí obsahovat update: -> ("update:emit")
+      2: $event je ten event kterej se zavolal, $event.target je html element toho eventu, a $event.target.value je hodnota toho inputu
+    -->
     <IconCancel :class="$style.iconCancel" />
     <IconAdd :class="$style.iconAdd" />
   </form>
@@ -21,13 +25,14 @@ export default defineComponent({
     IconCancel,
     IconAdd,
   },
+  // prop
   props: {
     newList: {
       type: String,
       required: true,
     },
   },
-  emits: ['searchData'],
+  emits: ['update:newList'],
 });
 </script>
 <style lang="scss" module>
