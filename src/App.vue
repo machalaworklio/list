@@ -57,11 +57,6 @@ export default defineComponent({
         // new Date - aktální čas, parseISO
       },
     ]);
-    function IconShow(){
-      if(icon == "true"){
-          //display icon
-      }
-    }
     // counter
     const newId = computed(
       () => Math.max(...lists.value.map((obj) => obj.number), 0) + 1
