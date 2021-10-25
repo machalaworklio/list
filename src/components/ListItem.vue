@@ -15,8 +15,15 @@
 </template>
 <script>
 import { defineComponent } from '@vue/runtime-core';
+import IconCheck from './IconCheck.vue';
+import IconTrash from './IconTrash.vue';
+
 export default defineComponent({
   name: 'ListItem',
+  components: {
+    IconCheck,
+    IconTrash,
+  },
   props: {
     content: {
       type: String,

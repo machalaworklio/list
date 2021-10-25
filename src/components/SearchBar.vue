@@ -11,8 +11,15 @@
 </template>
 <script>
 import { defineComponent } from '@vue/runtime-core';
+import IconCancel from './IconCancel.vue';
+import IconAdd from './IconAdd.vue';
+
 export default defineComponent({
   name: 'SearchBar',
+  component: {
+    IconCancel,
+    IconAdd,
+  },
   props: {
     newList: {
       type: String,
