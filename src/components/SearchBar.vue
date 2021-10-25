@@ -4,7 +4,8 @@
       :value="newList"
       name="newList"
       autocomplete="off"
-      :class="$style.searchBar" />
+      :class="$style.searchBar"
+      @input="$emit('searchData', $event.target.value)" />
     <IconCancel :class="$style.iconCancel" />
     <IconAdd :class="$style.iconAdd" />
   </form>
@@ -26,6 +27,7 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['searchData'],
 });
 </script>
 <style lang="scss" module>
