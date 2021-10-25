@@ -2,14 +2,13 @@
   <div :class="$style.workspace">
     <div :class="$style.container">
       <SearchBar v-model:newList="newList" />
-      {{ newList }}
       <!--
         // 1: v-model:prop=":value"
         // 2: používáš prop newList, a potřebuju aby jsi pak na ten search bar mohl použít v-model aby to mohlo komunikovat jak parent > child, tak child > parent
       -->
       <ul :class="$style.list">
         <ListItem
-          v-for="(list, index) in lists"
+          v-for="(list, index) in contentSearch"
           :key="index"
           :content="list.content"
           :number="list.number"
@@ -78,11 +77,14 @@ export default defineComponent({
       () => [...lists.value].sort((a, b) => a.time < b.time)
       // copy - ...lists -> musí referovat hodnotu .value
     );
+    */
     // sort
-    const sortSearch = computed(() =>
-      lists.value.filter((obj) => obj.content === newList.value)
+    const contentSearch = computed(
+      () =>
+        lists.value.filter((obj) =>
+          obj.content.toLowerCase().includes(newList.value.toLowerCase())
+        ) // .includes - line-up ignore, .toLowerCase - capital letters ignore
     );
-*/
     // filter
     function addList() {
       if (newList.value) {
@@ -100,6 +102,7 @@ export default defineComponent({
     return {
       lists,
       newList,
+      contentSearch,
       addList,
       removeList,
     };
