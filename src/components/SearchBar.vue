@@ -21,7 +21,7 @@ import IconAdd from './IconAdd.vue';
 
 export default defineComponent({
   name: 'SearchBar',
-  component: {
+  components: {
     IconCancel,
     IconAdd,
   },

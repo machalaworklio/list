@@ -13,3 +13,11 @@
       stroke-linejoin="round" />
   </svg>
 </template>
+
+<script>
+import { defineComponent } from '@vue/runtime-core';
+
+export default defineComponent({
+  name: 'IconCancel',
+});
+</script>
