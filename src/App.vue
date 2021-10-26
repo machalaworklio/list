@@ -18,7 +18,7 @@
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
-    <SideBar />
+    <SideBar v-model:clicked="newSort" />
   </div>
 </template>
 

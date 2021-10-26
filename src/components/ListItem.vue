@@ -9,7 +9,9 @@
     </div>
     <div :class="$style.options">
       <span :class="$style.date">{{ time }}</span>
-      <IconTrash :class="$style.trashIcon" @click="$emit('delete', number)" />
+      <IconTrash
+        :class="$style.trashIcon"
+        @click="$emit('removeList', number)" />
     </div>
   </li>
 </template>
@@ -39,7 +41,7 @@ export default defineComponent({
     },
     icon: Boolean,
   },
-  emits: ['delete'],
+  emits: ['removeList'],
   /*
   parent -> child - props
   child -> parent - emit
