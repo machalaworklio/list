@@ -4,7 +4,9 @@
       <SearchBar v-model:newList="newList" />
       <!--
         // 1: v-model:prop=":value"
-        // 2: používáš prop newList, a potřebuju aby jsi pak na ten search bar mohl použít v-model aby to mohlo komunikovat jak parent > child, tak child > parent
+        // 2: používáš prop newList, a potřebuju aby jsi pak na ten search bar
+              mohl použít v-model aby to mohlo komunikovat jak parent > child,
+              tak child > parent
       -->
       <ul :class="$style.list">
         <ListItem

@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.sort">
-    <div :class="$style.sortBy">
+    <div :class="$style.sortBy" @click="$emit('valueSort', number)">
       <p>Sort by <strong :style="$style.boldText">Value</strong></p>
     </div>
-    <div :class="$style.sortBy">
+    <div :class="$style.sortBy" @click="$emit('timeSort', number)">
       <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
     </div>
   </div>
@@ -14,6 +14,7 @@ import { defineComponent } from '@vue/runtime-core';
 
 export default defineComponent({
   name: 'SideBar',
+  emits: ['valueSort', 'timeSort'],
 });
 </script>
 

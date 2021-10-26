@@ -40,6 +40,10 @@ export default defineComponent({
     icon: Boolean,
   },
   emits: ['delete'],
+  /*
+  parent -> child - props
+  child -> parent - emit
+  */
 });
 </script>
 <style lang="scss" module>
@@ -54,7 +58,7 @@ export default defineComponent({
   &:hover {
     background: color.$activeItem;
     border-radius: 5px;
-    img {
+    svg {
       display: block;
     }
   }
