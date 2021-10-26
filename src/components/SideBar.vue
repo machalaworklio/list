@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.sort">
-    <div :class="$style.sortBy" @click="$emit('sortValue', clicked)">
+    <div :class="$style.sortBy" @click="$emit('value', clicked)">
       <p>Sort by <strong :style="$style.boldText">Value</strong></p>
     </div>
-    <div :class="$style.sortBy" @click="$emit('sortTime', clicked)">
+    <div :class="$style.sortBy" @click="$emit('time', clicked)">
       <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
     </div>
   </div>
@@ -17,7 +17,7 @@ export default defineComponent({
   props: {
     clicked: Boolean,
   },
-  emits: ['sortValue', 'sortTime'],
+  emits: ['value', 'time'],
 });
 </script>
 

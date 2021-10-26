@@ -18,13 +18,13 @@
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
-    <SideBar v-model:newList="sortValue" />
+    <SideBar v-model:newList="sortByValue" />
   </div>
 </template>
 
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue';
-// import { formatISO } from 'date-fns';
+import { formatISO } from 'date-fns';
 import SearchBar from './components/SearchBar.vue';
 import ListItem from './components/ListItem.vue';
 import SideBar from './components/SideBar.vue';
@@ -71,7 +71,7 @@ export default defineComponent({
       // copy - ...lists -> musí referovat hodnotu .value
     );
     const sortTime = computed(
-      () => [...lists.value].sort((a, b) => a.time < b.time)
+      () => [...lists.value].sort((a, b) => a.time > b.time)
       // copy - ...lists -> musí referovat hodnotu .value
     );
     // sort
@@ -101,6 +101,7 @@ export default defineComponent({
       contentSearch,
       sortValue,
       sortTime,
+      sortByValue,
       addList,
       removeList,
     };
