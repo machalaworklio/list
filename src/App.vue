@@ -18,7 +18,7 @@
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
-    <SideBar v-model:clicked="newSort" />
+    <SideBar v-model:newList="sortValue" />
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default defineComponent({
       // Math.max - zjistí max. hodnotu (externí pole ...)
       // .map(vnitřní funkce) - metoda co zavolá funkci pro každou položku v array
     );
-    /*
+
     // nelze kopírovat přímo ref ale hodnotu z něj
     const sortValue = computed(
       () => [...lists.value].sort((a, b) => a.number - b.number)
@@ -74,7 +74,6 @@ export default defineComponent({
       () => [...lists.value].sort((a, b) => a.time < b.time)
       // copy - ...lists -> musí referovat hodnotu .value
     );
-    */
     // sort
     const contentSearch = computed(
       () =>
@@ -100,6 +99,8 @@ export default defineComponent({
       lists,
       newList,
       contentSearch,
+      sortValue,
+      sortTime,
       addList,
       removeList,
     };

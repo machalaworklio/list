@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.sort" :value="newSort">
+  <div :class="$style.sort">
     <div :class="$style.sortBy" @click="$emit('sortValue', clicked)">
       <p>Sort by <strong :style="$style.boldText">Value</strong></p>
     </div>
