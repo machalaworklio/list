@@ -8,10 +8,8 @@
       <span :class="$style.number">#{{ number }}</span>
     </div>
     <div :class="$style.options">
-      <span :class="$style.date">{{ time }}</span>
-      <IconTrash
-        :class="$style.trashIcon"
-        @click="$emit('removeList', number)" />
+      <span :class="$style.date">{{ time - new Date() }}</span>
+      <IconTrash :class="$style.trashIcon" @delete="removeList(index)" />
     </div>
   </li>
 </template>

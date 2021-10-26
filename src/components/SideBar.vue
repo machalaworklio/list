@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.sort">
-    <div :class="$style.sortBy" @click="$emit('value', clicked)">
+    <div :class="$style.sortBy" @click="$emit('value')" @value="sortByValue">
       <p>Sort by <strong :style="$style.boldText">Value</strong></p>
     </div>
-    <div :class="$style.sortBy" @click="$emit('time', clicked)">
+    <div :class="$style.sortBy" @click="$emit('time')" @time="sortByTime">
       <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
     </div>
   </div>
@@ -14,9 +14,6 @@ import { defineComponent } from '@vue/runtime-core';
 
 export default defineComponent({
   name: 'SideBar',
-  props: {
-    clicked: Boolean,
-  },
   emits: ['value', 'time'],
 });
 </script>

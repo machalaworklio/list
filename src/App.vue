@@ -18,7 +18,8 @@
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
-    <SideBar v-model:newList="sortByValue" />
+    <SideBar v-model:newList="sortBy"/>
+    {{ sortValue }}
   </div>
 </template>
 
@@ -35,26 +36,30 @@ export default defineComponent({
     ListItem,
     SideBar,
   },
+  props: {
+    delete: Boolean,
+  },
+  emits: ['delete'],
   setup() {
     const newList = ref('');
-    const sortByValue = ref<'value' | 'time'>('value');
-    sortByValue.value = 'value';
+    const sortBy = ref<'value' | 'time'>('time');
+    const sortValue = sortBy.value;
     interface listsType {
       content: string;
       number: number;
-      time: Date;
+      time: string;
     }
     // default
     const lists = ref<listsType[]>([
       {
         content: 'hello',
         number: 3,
-        time: new Date(),
+        time: formatISO(new Date()),
       },
       {
         content: 'bye',
         number: 5,
-        time: new Date(),
+        time: formatISO(new Date()),
         // new Date - aktální čas, parseISO
       },
     ]);
@@ -66,14 +71,16 @@ export default defineComponent({
     );
 
     // nelze kopírovat přímo ref ale hodnotu z něj
-    const sortValue = computed(
+    const sortByValue = computed(
       () => [...lists.value].sort((a, b) => a.number - b.number)
       // copy - ...lists -> musí referovat hodnotu .value
     );
-    const sortTime = computed(
-      () => [...lists.value].sort((a, b) => a.time > b.time)
+    const sortByTime = computed(
+      () =>
+        [...lists.value].sort((a, b) => Date.parse(b.time) - Date.parse(a.time))
       // copy - ...lists -> musí referovat hodnotu .value
     );
+
     // sort
     const contentSearch = computed(
       () =>
@@ -87,7 +94,7 @@ export default defineComponent({
         lists.value.push({
           content: newList.value,
           number: newId.value,
-          time: new Date(),
+          time: formatISO(new Date()),
         });
         newList.value = '';
       }
@@ -100,8 +107,9 @@ export default defineComponent({
       newList,
       contentSearch,
       sortValue,
-      sortTime,
+      sortBy,
       sortByValue,
+      sortByTime,
       addList,
       removeList,
     };

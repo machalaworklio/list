@@ -5,7 +5,8 @@
     stroke-width="1.5"
     viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg">
+    xmlns="http://www.w3.org/2000/svg"
+    @click="$emit('delete')">
     <path
       d="M1.5 12.5L5.57574 16.5757C5.81005 16.8101 6.18995 16.8101 6.42426 16.5757L9 14"
       stroke="currentColor"
@@ -23,5 +24,6 @@ import { defineComponent } from '@vue/runtime-core';
 
 export default defineComponent({
   name: 'IconCheck',
+  emits: ['delete'],
 });
 </script>

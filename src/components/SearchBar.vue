@@ -10,8 +10,8 @@
       1: $emit("emit") - musí obsahovat update: -> ("update:emit")
       2: $event je ten event kterej se zavolal, $event.target je html element toho eventu, a $event.target.value je hodnota toho inputu
     -->
-    <IconCancel :class="$style.iconCancel" />
-    <IconAdd :class="$style.iconAdd" />
+    <IconCancel v-if="iconCancel" :class="$style.iconCancel" />
+    <IconAdd v-if="iconAdd" :class="$style.iconAdd" />
   </form>
 </template>
 <script>
@@ -31,6 +31,8 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    iconCancel: Boolean,
+    iconAdd: Boolean,
   },
   emits: ['update:newList'],
 });
