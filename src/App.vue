@@ -18,8 +18,8 @@
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
-    <SideBar v-model:newList="sortBy"/>
-    {{ sortValue }}
+    <SideBar v-model:newList="sortBy" />
+    {{ sortBy }}
   </div>
 </template>
 
@@ -43,7 +43,6 @@ export default defineComponent({
   setup() {
     const newList = ref('');
     const sortBy = ref<'value' | 'time'>('time');
-    const sortValue = sortBy.value;
     interface listsType {
       content: string;
       number: number;
@@ -106,7 +105,6 @@ export default defineComponent({
       lists,
       newList,
       contentSearch,
-      sortValue,
       sortBy,
       sortByValue,
       sortByTime,
