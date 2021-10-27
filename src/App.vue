@@ -69,16 +69,16 @@ export default defineComponent({
       // .map(vnitřní funkce) - metoda co zavolá funkci pro každou položku v array
     );
 
-    // nelze kopírovat přímo ref ale hodnotu z něj
-    const sortByValue = computed(
-      () => [...lists.value].sort((a, b) => a.number - b.number)
-      // copy - ...lists -> musí referovat hodnotu .value
-    );
-    const sortByTime = computed(
-      () =>
-        [...lists.value].sort((a, b) => Date.parse(b.time) - Date.parse(a.time))
-      // copy - ...lists -> musí referovat hodnotu .value
-    );
+    const contentSorted = computed(
+      () => [...contentSearch.value].sort((a, b) => {
+      if (sortBy.value === "value"){
+        a.number - b.number
+      } else {
+        Date.parse(b.time) - Date.parse(a.time)
+      }});
+        // nelze kopírovat přímo ref ale hodnotu z něj
+        // copy - ...lists -> musí referovat hodnotu .value
+      });
 
     // sort
     const contentSearch = computed(
@@ -106,8 +106,7 @@ export default defineComponent({
       newList,
       contentSearch,
       sortBy,
-      sortByValue,
-      sortByTime,
+      contentSorted,
       addList,
       removeList,
     };

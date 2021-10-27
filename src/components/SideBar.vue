@@ -4,6 +4,10 @@
       <p>Sort by <strong :style="$style.boldText">Value</strong></p>
     </div>
     <div :class="$style.sortBy" @click="$emit('update:newList', 'time')">
+      <!--
+      1. @event="$emit("název", hodnota)
+      2. time -> value, "time" -> string
+      --->
       <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
     </div>
   </div>
