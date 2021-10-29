@@ -14,7 +14,8 @@
           :key="index"
           :content="list.content"
           :number="list.number"
-          :time="list.time" />
+          :time="list.time"
+          @remove="removeList(index)" />
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
@@ -25,7 +26,7 @@
 
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue';
-import { formatISO } from 'date-fns';
+import formatISO from 'date-fns/formatISO';
 import SearchBar from './components/SearchBar.vue';
 import ListItem from './components/ListItem.vue';
 import SideBar from './components/SideBar.vue';
@@ -35,9 +36,6 @@ export default defineComponent({
     SearchBar,
     ListItem,
     SideBar,
-  },
-  props: {
-    delete: Boolean,
   },
   emits: ['delete'],
   setup() {
@@ -72,6 +70,7 @@ export default defineComponent({
     const contentSorted = computed(() =>
       [...contentSearch.value].sort((a, b) => {
         if (sortBy.value === 'value') {
+          // alphabet sort
           if (a.content < b.content) {
             return -1;
           }
@@ -80,6 +79,7 @@ export default defineComponent({
           }
           return 0;
         } else {
+          // time sort
           return Date.parse(b.time) - Date.parse(a.time);
         }
       })

@@ -9,7 +9,9 @@
     </div>
     <div :class="$style.options">
       <span :class="$style.date">{{ time - new Date() }}</span>
-      <IconTrash :class="$style.trashIcon" @delete="removeList(index)" />
+      <div :class="$style.trashBg">
+        <IconTrash :class="$style.trashIcon" @click="$emit('remove')" />
+      </div>
     </div>
   </li>
 </template>
@@ -39,7 +41,7 @@ export default defineComponent({
     },
     icon: Boolean,
   },
-  emits: ['removeList'],
+  emits: ['remove'],
   /*
   parent -> child - props
   child -> parent - emit
@@ -58,7 +60,7 @@ export default defineComponent({
   &:hover {
     background: color.$activeItem;
     border-radius: 5px;
-    svg {
+    .trashBg {
       display: block;
     }
   }
@@ -77,10 +79,20 @@ export default defineComponent({
   margin-top: 10px;
 }
 .trashIcon {
+  height: 30px;
+  margin: 0px 0 0 6px;
+  width: 20px;
+}
+.trashBg {
   cursor: pointer;
   display: none;
+  width: 30px;
   height: 30px;
-  margin: 5px 0 0 10px;
-  width: 20px;
+  background: color.$nonVisible;
+  border-radius: 50%;
+  margin: 5px 0 0 5px;
+  &:hover {
+    background: color.$trash;
+  }
 }
 </style>
