@@ -10,7 +10,7 @@
       -->
       <ul :class="$style.list">
         <ListItem
-          v-for="(list, index) in contentSearch"
+          v-for="(list, index) in contentSorted"
           :key="index"
           :content="list.content"
           :number="list.number"
@@ -72,7 +72,7 @@ export default defineComponent({
     const contentSorted = computed(() =>
       [...contentSearch.value].sort((a, b) => {
         if (sortBy.value === 'value') {
-          return a.number - b.number;
+          return a.content.length - b.content.length;
         } else {
           return Date.parse(b.time) - Date.parse(a.time);
         }
