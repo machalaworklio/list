@@ -72,7 +72,13 @@ export default defineComponent({
     const contentSorted = computed(() =>
       [...contentSearch.value].sort((a, b) => {
         if (sortBy.value === 'value') {
-          return a.content.length - b.content.length;
+          if (a.content < b.content) {
+            return -1;
+          }
+          if (a.content > b.content) {
+            return 1;
+          }
+          return 0;
         } else {
           return Date.parse(b.time) - Date.parse(a.time);
         }
