@@ -55,7 +55,7 @@ export default defineComponent({
       },
       {
         content: 'bye',
-        number: 5,
+        number: 4,
         time: formatISO(new Date()),
         // new Date - aktální čas, parseISO
       },
@@ -106,8 +106,14 @@ export default defineComponent({
       }
     }
     function removeList(id: number) {
-      console.log(id)
-      lists.value.splice(id, 1);
+      console.log(id);
+      const filtered = lists.value.filter((obj) => obj.number !== id);
+      lists.value = filtered;
+      /*
+      1: filter dělá to, že vezme pole, na základě nějaké podmínky vynechá určité položky v tom poli a vrátí výsledek
+      2: filter prakticky vždycky je určenej k odstraňování prvků z pole
+      3: filter ti vrátí nový pole, na co to používáš je tomu filteru uplně jedno
+      */
     }
     return {
       lists,
