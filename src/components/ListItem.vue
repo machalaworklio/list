@@ -10,7 +10,7 @@
     <div :class="$style.options">
       <span :class="$style.date">{{ time }}</span>
       <div :class="$style.trashBg">
-        <IconTrash :class="$style.trashIcon" @click="$emit('remove', id)" />
+        <IconTrash :class="$style.trashIcon" @click="$emit('remove', number)" />
       </div>
     </div>
   </li>
