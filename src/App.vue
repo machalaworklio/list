@@ -15,7 +15,7 @@
           :content="list.content"
           :number="list.number"
           :time="list.time"
-          @remove="removeList(index)" />
+          @remove="removeList(id)" />
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
@@ -105,8 +105,8 @@ export default defineComponent({
         newList.value = '';
       }
     }
-    function removeList(index: number) {
-      lists.value.splice(index, 1);
+    function removeList(id: number) {
+      lists.value.splice(id, 1);
     }
     return {
       lists,

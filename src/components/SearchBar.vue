@@ -5,6 +5,7 @@
       name="newList"
       autocomplete="off"
       :class="$style.searchBar"
+      placeholder="Search or Add..."
       @input="$emit('update:newList', $event.target.value)" />
     <!--
       1: $emit("emit") - musí obsahovat update: -> ("update:emit")
@@ -46,5 +47,6 @@ export default defineComponent({
   outline: none;
   padding: 10px;
   width: 100%;
+  color: color.$line;
 }
 </style>

@@ -8,9 +8,9 @@
       <span :class="$style.number">#{{ number }}</span>
     </div>
     <div :class="$style.options">
-      <span :class="$style.date">{{ time - new Date() }}</span>
+      <span :class="$style.date">{{ time }}</span>
       <div :class="$style.trashBg">
-        <IconTrash :class="$style.trashIcon" @click="$emit('remove')" />
+        <IconTrash :class="$style.trashIcon" @click="$emit('remove', id)" />
       </div>
     </div>
   </li>
