@@ -1,19 +1,22 @@
 <template>
-  <form @submit.prevent="addList">
-    <input
-      :value="newList"
-      name="newList"
-      autocomplete="off"
-      :class="$style.searchBar"
-      placeholder="Search or Add..."
-      @input="$emit('update:newList', $event.target.value)" />
-    <!--
+  <div :class="$style.formContainer">
+    <form @submit.prevent="addList">
+      <input
+        :value="newList"
+        name="newList"
+        autocomplete="off"
+        :class="$style.searchBar"
+        placeholder="Search or Add..."
+        @input="$emit('update:newList', $event.target.value)" />
+      <!--
       1: $emit("emit") - musí obsahovat update: -> ("update:emit")
       2: $event je ten event kterej se zavolal, $event.target je html element toho eventu, a $event.target.value je hodnota toho inputu
-    -->
-    <IconCancel v-if="iconCancel" :class="$style.iconCancel" />
-    <IconAdd v-if="iconAdd" :class="$style.iconAdd" />
-  </form>
+    --></form>
+    <div :class="$style.searchIcons">
+      <IconCancel v-if="iconCancel" :class="$style.iconCancel" />
+      <IconAdd v-if="iconAdd" :class="$style.iconAdd" />
+    </div>
+  </div>
 </template>
 <script>
 import { defineComponent } from '@vue/runtime-core';
@@ -46,7 +49,25 @@ export default defineComponent({
   height: 40px;
   outline: none;
   padding: 10px;
-  width: 100%;
+  width: 330px;
   color: color.$line;
+}
+.searchIcons {
+  width: 70px;
+  background: color.$search;
+}
+.formContainer {
+  width: 100%;
+  display: flex;
+}
+.iconCancel {
+  height: 30px;
+  margin: 0px 0 0 6px;
+  width: 20px;
+}
+.iconAdd {
+  height: 30px;
+  margin: 5px 0 0 6px;
+  width: 20px;
 }
 </style>

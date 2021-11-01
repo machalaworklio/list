@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue';
-import formatISO from 'date-fns/formatISO';
+import { formatISO } from 'date-fns';
 import SearchBar from './components/SearchBar.vue';
 import ListItem from './components/ListItem.vue';
 import SideBar from './components/SideBar.vue';
@@ -46,6 +46,8 @@ export default defineComponent({
       number: number;
       time: string;
     }
+    // date-fns: formatDistanceToNow, formatDistanceToNowStrict
+    // getNow(), kam dát funkci
     // default
     const lists = ref<listsType[]>([
       {
@@ -57,7 +59,7 @@ export default defineComponent({
         content: 'bye',
         number: 4,
         time: formatISO(new Date()),
-        // new Date - aktální čas, parseISO
+        // new Date - aktuální čas, formatISO & parseISO
       },
     ]);
     // counter
@@ -87,6 +89,15 @@ export default defineComponent({
     // nelze kopírovat přímo ref ale hodnotu z něj
     // copy - ...lists -> musí referovat hodnotu .value
 
+    const searchSame = computed(() =>
+      lists.value.filter((obj) => {
+        if (
+          obj.content.toLowerCase().includes(newList.value.toLowerCase()) === obj.content
+        ) {
+          return (iconAdd = false);
+        }
+      })
+    );
     // sort
     const contentSearch = computed(
       () =>
@@ -97,6 +108,7 @@ export default defineComponent({
     // filter
     function addList() {
       if (newList.value) {
+        // pushne data do pole
         lists.value.push({
           content: newList.value,
           number: newId.value,
@@ -106,15 +118,21 @@ export default defineComponent({
       }
     }
     function removeList(id: number) {
+      /*
+      // kontrola, jestli kliknutí vyhodí number listu
       console.log(id);
+      */
+      // na kliknutí se mi vyhledá jen to, co má zůstat
       const filtered = lists.value.filter((obj) => obj.number !== id);
-      lists.value = filtered;
       /*
       1: filter dělá to, že vezme pole, na základě nějaké podmínky vynechá určité položky v tom poli a vrátí výsledek
       2: filter prakticky vždycky je určenej k odstraňování prvků z pole
       3: filter ti vrátí nový pole, na co to používáš je tomu filteru uplně jedno
       */
+      // přepíšu originální data
+      lists.value = filtered;
     }
+
     return {
       lists,
       newList,

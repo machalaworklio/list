@@ -8,17 +8,19 @@
       <span :class="$style.number">#{{ number }}</span>
     </div>
     <div :class="$style.options">
-      <span :class="$style.date">{{ time }}</span>
+      <span :class="$style.date">{{ finalTime }}</span>
       <div :class="$style.trashBg">
         <IconTrash :class="$style.trashIcon" @click="$emit('remove', number)" />
       </div>
     </div>
   </li>
 </template>
-<script>
-import { defineComponent } from '@vue/runtime-core';
+<script lang="ts">
+import { defineComponent, computed } from '@vue/runtime-core';
+import { formatDistance, parseISO } from 'date-fns';
 import IconCheck from './IconCheck.vue';
 import IconTrash from './IconTrash.vue';
+import { actualTime } from '../script/actualTime';
 
 export default defineComponent({
   name: 'ListItem',
@@ -42,6 +44,17 @@ export default defineComponent({
     icon: Boolean,
   },
   emits: ['remove'],
+  setup(props) {
+    const finalTime = computed(() =>
+      formatDistance(parseISO(props.time), actualTime.value, {
+        addSuffix: true,
+        includeSeconds: true,
+      })
+    );
+    return {
+      finalTime,
+    };
+  },
   /*
   parent -> child - props
   child -> parent - emit
