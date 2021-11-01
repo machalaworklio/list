@@ -23,14 +23,14 @@ npm run serve
 - DONE - New item # should be equal to maximum number from list plus 1 (starting
   from 1)
 
-- Each item should keep track of when the item was added
-- Search bar should have multiple functionality
+- DONE - Each item should keep track of when the item was added
+- DONE - Search bar should have multiple functionality
 
-  - Non-empty value can be cleared through the clear button, or by pressing
+  - DONE - Non-empty value can be cleared through the clear button, or by pressing
     Escape key
-  - If searched string (case insensitive) is already present in the list, the
+  - DONE - If searched string (case insensitive) is already present in the list, the
     add button is disabled and appropriate item is marked as "Exact match"
-  - If no exact match is found, the add button is enabled and click on it or
+  - DONE - If no exact match is found, the add button is enabled and click on it or
     press of Enter key should add the string to the list
 
 - DONE - Search bar, list item and icons (svg files in assets) should be

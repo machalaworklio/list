@@ -1,26 +1,35 @@
 <template>
   <div :class="$style.workspace">
     <div :class="$style.container">
-      <SearchBar v-model:newList="newList" />
+      <SearchBar
+        v-model:newList="newList"
+        :icon-add="iconAdd"
+        @new-value="addList" />
       <!--
         // 1: v-model:prop=":value"
         // 2: používáš prop newList, a potřebuju aby jsi pak na ten search bar
               mohl použít v-model aby to mohlo komunikovat jak parent > child,
               tak child > parent
+        // 3: props: definují se camel case, zapisují se kebab case
+
       -->
       <ul :class="$style.list">
         <ListItem
-          v-for="(list, index) in contentSorted"
+          v-for="(list, index) in exactContent"
           :key="index"
           :content="list.content"
           :number="list.number"
           :time="list.time"
+          :icon="list.icon"
           @remove="removeList" />
       </ul>
       <h4 v-if="lists.length === 0">Empty list</h4>
     </div>
     <SideBar v-model:newList="sortBy" />
+    <!--
+    // sortValue check
     {{ sortBy }}
+    -->
   </div>
 </template>
 
@@ -88,34 +97,40 @@ export default defineComponent({
     );
     // nelze kopírovat přímo ref ale hodnotu z něj
     // copy - ...lists -> musí referovat hodnotu .value
-
     const searchSame = computed(() =>
-      lists.value.filter((obj) => {
-        if (
-          obj.content.toLowerCase().includes(newList.value.toLowerCase()) === obj.content
-        ) {
-          return (iconAdd = false);
-        }
-      })
+      lists.value.filter(
+        (obj) => obj.content.toLowerCase() === newList.value.toLowerCase()
+      )
+    );
+    const iconAdd = computed(
+      () => newList.value !== '' && searchSame.value.length === 0
     );
     // sort
     const contentSearch = computed(
       () =>
-        lists.value.filter((obj) =>
-          obj.content.toLowerCase().includes(newList.value.toLowerCase())
+        lists.value.filter(
+          (obj) =>
+            obj.content.toLowerCase().includes(newList.value.toLowerCase()) // boolean
         ) // .includes - line-up ignore, .toLowerCase - capital letters ignore
     );
+    const exactContent = computed(() =>
+      contentSorted.value.map((obj) => {
+        const icon = !!searchSame.value.find(
+          // find najde item = není boolean, ale pole
+          // 1. ! - neguje (true nebo false) 2. ! vrátí na původní hodnotu (boolean)
+          (list) => list.number === obj.number
+        );
+        return { ...obj, icon };
+      })
+    );
     // filter
-    function addList() {
-      if (newList.value) {
-        // pushne data do pole
-        lists.value.push({
-          content: newList.value,
-          number: newId.value,
-          time: formatISO(new Date()),
-        });
-        newList.value = '';
-      }
+    function addList(addValue: string) {
+      // pushne data do pole
+      lists.value.push({
+        content: addValue,
+        number: newId.value,
+        time: formatISO(new Date()),
+      });
     }
     function removeList(id: number) {
       /*
@@ -139,6 +154,8 @@ export default defineComponent({
       contentSearch,
       sortBy,
       contentSorted,
+      iconAdd,
+      exactContent,
       addList,
       removeList,
     };

@@ -95,6 +95,7 @@ export default defineComponent({
   height: 30px;
   margin: 0px 0 0 6px;
   width: 20px;
+  color: color.$trash;
 }
 .trashBg {
   cursor: pointer;
