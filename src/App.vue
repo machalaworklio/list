@@ -102,6 +102,7 @@ export default defineComponent({
         (obj) => obj.content.toLowerCase() === newList.value.toLowerCase()
       )
     );
+    // searchbar
     const iconAdd = computed(
       () => newList.value !== '' && searchSame.value.length === 0
     );
@@ -169,8 +170,8 @@ export default defineComponent({
   display: flex;
 }
 .container {
-  margin: 70px 0 0 auto;
-  width: 400px;
+  margin: 100px 0 0 auto;
+  width: 700px;
 }
 .list {
   margin: 20px 0 0 0;

@@ -31,7 +31,7 @@ export default defineComponent({
 <style lang="scss" module>
 @use 'sass/color';
 .sort {
-  margin: 100px auto 0 30px;
+  margin: 180px auto 0 50px;
   width: 150px;
 }
 .boldText {

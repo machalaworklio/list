@@ -15,11 +15,17 @@
       2: $event je ten event kterej se zavolal, $event.target je html element toho eventu, a $event.target.value je hodnota toho inputu
     --></form>
     <div :class="$style.searchIcons">
-      <IconCancel
-        v-if="deleteIcon"
-        :class="$style.iconCancel"
-        @click="$emit('update:newList', '')" />
-      <IconAdd v-if="iconAdd" :class="$style.iconAdd" @click="addList" />
+      <div v-if="deleteIcon" :class="$style.iconRadius">
+        <div
+          v-if="deleteIcon"
+          :class="$style.cancelBg"
+          @click="$emit('update:newList', '')">
+          <IconCancel :class="$style.iconCancel" />
+        </div>
+        <div v-if="iconAdd" :class="$style.addBg" @click="addList">
+          <IconAdd :class="$style.iconAdd" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -66,29 +72,65 @@ export default defineComponent({
 .searchBar {
   background: color.$search;
   border: none;
-  height: 40px;
+  height: 60px;
   outline: none;
-  padding: 10px;
-  width: 330px;
-  color: color.$line;
+  padding: 20px;
+  width: 600px;
+  color: color.$searchText;
+  font-size: 15px;
 }
 .searchIcons {
-  width: 70px;
+  width: 100px;
   background: color.$search;
 }
 .formContainer {
   width: 100%;
   display: flex;
 }
+.iconRadius {
+  width: 80px;
+  height: 40px;
+  border-radius: 30px;
+  margin: 10px 10px 0 0;
+  background: color.$workspaceRadius;
+  display: flex;
+}
+.cancelBg {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background: color.$nonVisible;
+  border-radius: 50%;
+  &:hover {
+    background: color.$trash;
+    & .iconCancel {
+      color: color.$activeItem;
+    }
+  }
+}
 .iconCancel {
-  height: 30px;
-  margin: 0px 0 0 6px;
-  width: 20px;
+  height: 25px;
+  margin: 7px 0 0 8px;
+  width: 25px;
+  color: color.$trash;
+}
+.addBg {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background: color.$nonVisible;
+  border-radius: 50%;
+  &:hover {
+    background: color.$true;
+    & .iconAdd {
+      color: color.$activeItem;
+    }
+  }
 }
 .iconAdd {
-  height: 30px;
-  margin: 5px 0 0 6px;
-  width: 20px;
+  height: 25px;
+  margin: 7px 0 0 8px;
+  width: 25px;
   color: color.$true;
 }
 </style>

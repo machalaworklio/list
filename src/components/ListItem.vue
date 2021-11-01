@@ -1,16 +1,21 @@
 <template>
   <li :class="$style.listItem">
     <div :class="$style.info">
-      <span v-if="icon"
-        ><IconCheck :class="$style.checkIcon" />Exact Match</span
-      >
-      <span :class="$style.content">{{ content }}</span>
-      <span :class="$style.number">#{{ number }}</span>
+      <div :class="$style.checkBox">
+        <IconCheck v-if="icon" :class="$style.checkIcon" />
+      </div>
+      <div>
+        <span :class="$style.content">{{ content }}</span>
+        <div>
+          <span v-if="icon" :class="$style.exact">Exact Match</span>
+          <span :class="$style.number">{{ '#' + number }}</span>
+        </div>
+      </div>
     </div>
     <div :class="$style.options">
       <span :class="$style.date">{{ finalTime }}</span>
-      <div :class="$style.trashBg">
-        <IconTrash :class="$style.trashIcon" @click="$emit('remove', number)" />
+      <div :class="$style.trashBg" @click="$emit('remove', number)">
+        <IconTrash :class="$style.trashIcon" />
       </div>
     </div>
   </li>
@@ -68,11 +73,15 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   list-style: none;
-  padding: 10px;
+  height: 65px;
+  padding: 5px;
   width: 100%;
+  transition: 0.2s;
   &:hover {
     background: color.$activeItem;
     border-radius: 5px;
+    box-shadow: 1px 1px 20px 1px #d6d6d6;
+    transition: 0.33s;
     .trashBg {
       display: block;
     }
@@ -80,33 +89,50 @@ export default defineComponent({
 }
 .info {
   display: flex;
-  flex-direction: column;
+  margin: 8px 0 0 10px;
 }
 .options {
   display: flex;
+  color: color.$text;
 }
-.content {
-  font-weight: bold;
+.number {
+  color: color.$searchText;
+  font-size: 13px;
+}
+.exact {
+  color: color.$true;
+  font-size: 13px;
+  margin: 0 5px 0 0;
 }
 .date {
-  margin-top: 10px;
+  color: color.$text;
+  margin: 17px 10px 0 0;
+}
+.checkIcon {
+  height: 25px;
+  margin: 8px 20px 0 10px;
+  width: 25px;
+  color: color.$true;
 }
 .trashIcon {
   height: 30px;
-  margin: 0px 0 0 6px;
+  margin: 4px 0 0 10px;
   width: 20px;
   color: color.$trash;
 }
 .trashBg {
   cursor: pointer;
   display: none;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: color.$nonVisible;
   border-radius: 50%;
-  margin: 5px 0 0 5px;
+  margin: 7px 10px 0 0;
   &:hover {
     background: color.$trash;
+    .trashIcon {
+      color: color.$activeItem;
+    }
   }
 }
 </style>
