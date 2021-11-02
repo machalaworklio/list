@@ -23,7 +23,9 @@
           :icon="list.icon"
           @remove="removeList" />
       </ul>
-      <h4 v-if="lists.length === 0">Empty list</h4>
+      <div v-if="lists.length === 0" :class="$style.emptyBox">
+        <p :class="$style.emptyList">empty list</p>
+      </div>
     </div>
     <SideBar v-model:newList="sortBy" />
     <!--
@@ -49,28 +51,27 @@ export default defineComponent({
   emits: ['delete'],
   setup() {
     const newList = ref('');
+
     const sortBy = ref<'value' | 'time'>('time');
     interface listsType {
       content: string;
       number: number;
       time: string;
     }
+    const defaultData: listsType[] = [
+      // chci to použít jako pole (obashuje více proměných)
+      {
+        content: 'Hello',
+        number: 1,
+        time: formatISO(new Date()),
+      },
+    ];
+    const listsData =
+      JSON.parse(localStorage.getItem('exactContent') as any) || defaultData;
     // date-fns: formatDistanceToNow, formatDistanceToNowStrict
     // getNow(), kam dát funkci
     // default
-    const lists = ref<listsType[]>([
-      {
-        content: 'hello',
-        number: 3,
-        time: formatISO(new Date()),
-      },
-      {
-        content: 'bye',
-        number: 4,
-        time: formatISO(new Date()),
-        // new Date - aktuální čas, formatISO & parseISO
-      },
-    ]);
+    const lists = ref<listsType[]>(listsData);
     // counter
     const newId = computed(
       () => Math.max(...lists.value.map((obj) => obj.number), 0) + 1
@@ -149,6 +150,12 @@ export default defineComponent({
       // přepíšu originální data
       lists.value = filtered;
     }
+    function saveData() {
+      const storageData = JSON.stringify(newList.value);
+      // JSON.stringify - vezme objekt a vrátí string
+      localStorage.setItem('exactContent', storageData);
+      // přidání hodnoty do lokální paměěti
+    }
     return {
       lists,
       newList,
@@ -157,8 +164,11 @@ export default defineComponent({
       contentSorted,
       iconAdd,
       exactContent,
+      listsData,
+      defaultData,
       addList,
       removeList,
+      saveData,
     };
   },
 });
@@ -177,5 +187,15 @@ export default defineComponent({
   margin: 20px 0 0 0;
   padding: 0;
   width: 100%;
+}
+.emptyBox {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+.emptyList {
+  width: 100%;
+  color: color.$lightText;
+  justify-content: center;
 }
 </style>
