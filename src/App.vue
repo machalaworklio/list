@@ -98,6 +98,7 @@ export default defineComponent({
     // nelze kopírovat přímo ref ale hodnotu z něj
     // copy - ...lists -> musí referovat hodnotu .value
     const searchSame = computed(() =>
+      // filter vrací pole
       lists.value.filter(
         (obj) => obj.content.toLowerCase() === newList.value.toLowerCase()
       )
@@ -127,11 +128,15 @@ export default defineComponent({
     // filter
     function addList(addValue: string) {
       // pushne data do pole
-      lists.value.push({
-        content: addValue,
-        number: newId.value,
-        time: formatISO(new Date()),
-      });
+      if (searchSame.value.length === 0) {
+        lists.value.push({
+          content: addValue,
+          number: newId.value,
+          time: formatISO(new Date()),
+        });
+      } else {
+        return;
+      }
     }
     function removeList(id: number) {
       /*

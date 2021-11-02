@@ -25,6 +25,9 @@
         <div v-if="iconAdd" :class="$style.addBg" @click="addList">
           <IconAdd :class="$style.iconAdd" />
         </div>
+        <div v-if="!iconAdd" :class="$style.addBgFalse">
+          <IconAdd :class="$style.iconAddFalse" />
+        </div>
       </div>
     </div>
   </div>
@@ -135,5 +138,19 @@ export default defineComponent({
   margin: 7px 0 0 8px;
   width: 25px;
   color: color.$true;
+}
+
+.addBgFalse {
+  cursor: not-allowed;
+  width: 40px;
+  height: 40px;
+  background: color.$nonVisible;
+  border-radius: 50%;
+}
+.iconAddFalse {
+  height: 25px;
+  margin: 7px 0 0 8px;
+  width: 25px;
+  color: color.$lightText;
 }
 </style>
