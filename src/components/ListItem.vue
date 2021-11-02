@@ -14,7 +14,10 @@
     </div>
     <div :class="$style.options">
       <span :class="$style.date">{{ finalTime }}</span>
-      <div :class="$style.trashBg" @click="$emit('remove', number)">
+      <div
+        :class="$style.trashBg"
+        title="Delete"
+        @click="$emit('remove', number)">
         <IconTrash :class="$style.trashIcon" />
       </div>
     </div>

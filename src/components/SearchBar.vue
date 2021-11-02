@@ -19,10 +19,11 @@
         <div
           v-if="deleteIcon"
           :class="$style.cancelBg"
+          title="Clear"
           @click="$emit('update:newList', '')">
           <IconCancel :class="$style.iconCancel" />
         </div>
-        <div v-if="iconAdd" :class="$style.addBg" @click="addList">
+        <div v-if="iconAdd" :class="$style.addBg" title="Add" @click="addList">
           <IconAdd :class="$style.iconAdd" />
         </div>
         <div v-if="!iconAdd" :class="$style.addBgFalse">
