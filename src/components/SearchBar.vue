@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.formContainer">
-    <form @submit.prevent="addList">
+    <form :class="$style.searchBarForm" @submit.prevent="addList">
       <!-- event se provede, dál nepokračuje -->
       <input
         :value="newList"
@@ -14,8 +14,8 @@
       1: $emit("emit") - musí obsahovat update: -> ("update:emit")
       2: $event je ten event kterej se zavolal, $event.target je html element toho eventu, a $event.target.value je hodnota toho inputu
     --></form>
-    <div :class="$style.searchIcons">
-      <div v-if="deleteIcon" :class="$style.iconRadius">
+    <div v-if="deleteIcon" :class="$style.searchIcons">
+      <div :class="$style.iconRadius">
         <div
           v-if="deleteIcon"
           :class="$style.cancelBg"
@@ -70,18 +70,21 @@ export default defineComponent({
 <style lang="scss" module>
 @use 'sass/color';
 .searchBar {
-  background: color.$search;
+  background: color.$searchBar;
   border: none;
   height: 60px;
   outline: none;
   padding: 20px;
-  width: 600px;
-  color: color.$searchText;
+  width: 100%;
+  color: color.$lightText;
   font-size: 15px;
 }
 .searchIcons {
   width: 100px;
-  background: color.$search;
+  background: color.$searchBar;
+}
+.searchBarForm {
+  width: 100%;
 }
 .formContainer {
   width: 100%;
@@ -92,7 +95,7 @@ export default defineComponent({
   height: 40px;
   border-radius: 30px;
   margin: 10px 10px 0 0;
-  background: color.$workspaceRadius;
+  background: color.$searchBarRadius;
   display: flex;
 }
 .cancelBg {

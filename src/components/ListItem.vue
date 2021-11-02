@@ -93,10 +93,10 @@ export default defineComponent({
 }
 .options {
   display: flex;
-  color: color.$text;
+  color: color.$boldText;
 }
 .number {
-  color: color.$searchText;
+  color: color.$lightText;
   font-size: 13px;
 }
 .exact {
@@ -105,7 +105,7 @@ export default defineComponent({
   margin: 0 5px 0 0;
 }
 .date {
-  color: color.$text;
+  color: color.$boldText;
   margin: 17px 10px 0 0;
 }
 .checkIcon {

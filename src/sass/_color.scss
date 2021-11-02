@@ -1,10 +1,13 @@
-$text: #212529;
-$searchText: #bcb5bd;
-$search: #eaedf0;
-$trash: #fa5252;
-$nonVisible: transparent;
+// text
+$boldText: #212529;
+$lightText: #bcb5bd;
+// components
+$workspace: linear-gradient(180deg, #FFFFFF 0%, #DEE2E6 100%);
+$searchBar: #F1F3F5;
 $line: #e9ecef;
+$searchBarRadius: #f9fafb;
+// icons
+$nonVisible: transparent;
+$trash: #FA5252;
+$true: #12B886;
 $activeItem: white;
-$workspace: linear-gradient(180deg, rgba(248,249,250,1) 0%, rgba(222,226,230,1) 100%);
-$workspaceRadius: #f9fafb;
-$true: #15aabf;

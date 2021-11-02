@@ -171,7 +171,7 @@ export default defineComponent({
 }
 .container {
   margin: 100px 0 0 auto;
-  width: 700px;
+  width: 800px;
 }
 .list {
   margin: 20px 0 0 0;

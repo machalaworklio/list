@@ -1,14 +1,16 @@
 <template>
   <div :class="$style.sort">
     <div :class="$style.sortBy" @click="$emit('update:newList', 'value')">
-      <p>Sort by <strong :style="$style.boldText">Value</strong></p>
+      <p :class="$style.content">Sort by</p>
+      <i :style="$style.boldText">Value</i>
     </div>
     <div :class="$style.sortBy" @click="$emit('update:newList', 'time')">
       <!--
       1. @event="$emit("název", hodnota)
       2. time -> value, "time" -> string
       --->
-      <p>Sort by <strong :style="$style.boldText">Added Date</strong></p>
+      <p :class="$style.content">Sort by</p>
+      <i :style="$style.boldText">Added Date</i>
     </div>
   </div>
 </template>
@@ -32,16 +34,21 @@ export default defineComponent({
 @use 'sass/color';
 .sort {
   margin: 180px auto 0 50px;
-  width: 150px;
+  width: 200px;
 }
 .boldText {
-  color: color.$text;
-  margin-left: 5px;
+  color: color.$boldText;
+  font-style: normal;
+}
+.content {
+  color: color.$lightText;
+  margin-right: 5px;
 }
 .sortBy {
   border-radius: 5px;
   cursor: pointer;
   padding: 10px;
+  display: flex;
   &:hover {
     background: color.$activeItem;
   }
