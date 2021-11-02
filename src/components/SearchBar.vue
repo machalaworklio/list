@@ -51,12 +51,17 @@ export default defineComponent({
     },
     iconAdd: Boolean,
   },
+  /*
+  props jsou data komponentu který tomu předáváš z parentu,
+  funguje to prakticky stejně jak například klasickej input element,
+  taky přijímá nějaký atributy na základě čeho mění chování toho inputu
+  */
   emits: ['update:newList', 'newValue'],
   // update - v model
   setup(props, { emit }) {
     const deleteIcon = computed(() => props.newList !== '');
     function addList() {
-      if (props.newList) {
+      if (props.iconAdd && props.newList) {
         // pushne data do pole
         emit('newValue', props.newList);
         // emit, hodnota property
@@ -79,8 +84,11 @@ export default defineComponent({
   outline: none;
   padding: 20px;
   width: 100%;
-  color: color.$lightText;
+  color: color.$boldText;
   font-size: 15px;
+}
+::placeholder {
+  color: color.$lightText;
 }
 .searchIcons {
   width: 100px;

@@ -128,15 +128,11 @@ export default defineComponent({
     // filter
     function addList(addValue: string) {
       // pushne data do pole
-      if (searchSame.value.length === 0) {
-        lists.value.push({
-          content: addValue,
-          number: newId.value,
-          time: formatISO(new Date()),
-        });
-      } else {
-        return;
-      }
+      lists.value.push({
+        content: addValue,
+        number: newId.value,
+        time: formatISO(new Date()),
+      });
     }
     function removeList(id: number) {
       /*
@@ -153,7 +149,6 @@ export default defineComponent({
       // přepíšu originální data
       lists.value = filtered;
     }
-
     return {
       lists,
       newList,
