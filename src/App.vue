@@ -206,13 +206,13 @@ export default defineComponent({
   width: 100%;
 }
 .emptyBox {
-  width: 100%;
   margin-top: 30px;
   text-align: center;
+  width: 100%;
 }
 .emptyList {
-  width: 100%;
   color: color.$lightText;
   justify-content: center;
+  width: 100%;
 }
 </style>

@@ -71,15 +71,36 @@ export default defineComponent({
 </script>
 <style lang="scss" module>
 @use 'sass/color';
+.trashIcon {
+  color: color.$trash;
+  height: 30px;
+  margin: 4px 0 0 10px;
+  width: 20px;
+}
+.trashBg {
+  background: color.$nonVisible;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  height: 40px;
+  margin: 7px 10px 0 0;
+  width: 40px;
+  &:hover {
+    background: color.$trash;
+    .trashIcon {
+      color: color.$activeItem;
+    }
+  }
+}
 .listItem {
   border-bottom: 1px solid color.$line;
   display: flex;
+  height: 65px;
   justify-content: space-between;
   list-style: none;
-  height: 65px;
   padding: 5px;
-  width: 100%;
   transition: 0.2s;
+  width: 100%;
   &:hover {
     background: color.$activeItem;
     border-radius: 5px;
@@ -95,8 +116,8 @@ export default defineComponent({
   margin: 8px 0 0 10px;
 }
 .options {
-  display: flex;
   color: color.$boldText;
+  display: flex;
 }
 .number {
   color: color.$lightText;
@@ -112,30 +133,9 @@ export default defineComponent({
   margin: 17px 10px 0 0;
 }
 .checkIcon {
+  color: color.$true;
   height: 25px;
   margin: 8px 20px 0 10px;
   width: 25px;
-  color: color.$true;
-}
-.trashIcon {
-  height: 30px;
-  margin: 4px 0 0 10px;
-  width: 20px;
-  color: color.$trash;
-}
-.trashBg {
-  cursor: pointer;
-  display: none;
-  width: 40px;
-  height: 40px;
-  background: color.$nonVisible;
-  border-radius: 50%;
-  margin: 7px 10px 0 0;
-  &:hover {
-    background: color.$trash;
-    .trashIcon {
-      color: color.$activeItem;
-    }
-  }
 }
 </style>

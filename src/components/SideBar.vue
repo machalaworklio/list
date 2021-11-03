@@ -53,20 +53,20 @@ export default defineComponent({
 .list {
   border-radius: 5px;
   cursor: pointer;
-  padding: 10px;
   display: flex;
   margin-top: 5px;
+  padding: 10px;
   &:hover {
     background: color.$activeItem;
   }
 }
 .circle {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  margin: 8px 0px 0 auto;
   background: color.$true;
+  border-radius: 50%;
   display: none;
+  height: 4px;
+  margin: 8px 0px 0 auto;
+  width: 4px;
 }
 .active {
   background: color.$activeItem;
