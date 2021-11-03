@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, defineComponent } from 'vue';
+import { watch, ref, computed, defineComponent } from 'vue';
 import { formatISO } from 'date-fns';
 import SearchBar from './components/SearchBar.vue';
 import ListItem from './components/ListItem.vue';
@@ -66,12 +66,30 @@ export default defineComponent({
         time: formatISO(new Date()),
       },
     ];
-    const listsData =
-      JSON.parse(localStorage.getItem('exactContent') as any) || defaultData;
     // date-fns: formatDistanceToNow, formatDistanceToNowStrict
     // getNow(), kam dát funkci
     // default
-    const lists = ref<listsType[]>(listsData);
+    const getItem = localStorage.getItem('newListStorage');
+
+    const lists = ref<listsType[]>(getItem ? JSON.parse(getItem) : []);
+    /*
+    // možnost 1
+    1. varianta - uložení
+    2. varianta - odstranění
+    */
+    // možnost 2 - watch: sleduje změny lists, pokud nastanou zavolá se saveData()
+    watch(
+      lists,
+      () => {
+        saveData();
+      },
+      /*
+      immediate - počítá hned
+      deep - až nastanou změny v array
+      */
+      { deep: true }
+    );
+
     // counter
     const newId = computed(
       () => Math.max(...lists.value.map((obj) => obj.number), 0) + 1
@@ -151,9 +169,9 @@ export default defineComponent({
       lists.value = filtered;
     }
     function saveData() {
-      const storageData = JSON.stringify(newList.value);
+      const storageData = JSON.stringify(lists.value);
       // JSON.stringify - vezme objekt a vrátí string
-      localStorage.setItem('exactContent', storageData);
+      localStorage.setItem('newListStorage', storageData);
       // přidání hodnoty do lokální paměěti
     }
     return {
@@ -164,7 +182,6 @@ export default defineComponent({
       contentSorted,
       iconAdd,
       exactContent,
-      listsData,
       defaultData,
       addList,
       removeList,
