@@ -16,19 +16,25 @@
     --></form>
     <div v-if="deleteIcon" :class="$style.searchIcons">
       <div :class="$style.iconRadius">
-        <div
+        <button
           v-if="deleteIcon"
           :class="$style.cancelBg"
           title="Clear"
+          type="button"
           @click="$emit('update:newList', '')">
           <IconCancel :class="$style.cancelIcon" />
-        </div>
-        <div v-if="iconAdd" :class="$style.addBg" title="Add" @click="addList">
+        </button>
+        <button
+          v-if="iconAdd"
+          :class="$style.addBg"
+          title="Add"
+          type="button"
+          @click="addList">
           <IconAdd :class="$style.addIcon" />
-        </div>
-        <div v-if="!iconAdd" :class="$style.addBgFalse">
+        </button>
+        <button v-if="!iconAdd" :class="$style.addBgFalse" type="button">
           <IconAdd :class="$style.addIconFalse" />
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -113,11 +119,12 @@ export default defineComponent({
 .cancelIcon {
   color: color.$trash;
   height: 25px;
-  margin: 7px 0 0 8px;
+  margin: 4px 0 0 1px;
   width: 25px;
 }
 .cancelBg {
   background: color.$nonVisible;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   height: 40px;
@@ -132,11 +139,12 @@ export default defineComponent({
 .addIcon {
   color: color.$true;
   height: 25px;
-  margin: 7px 0 0 8px;
+  margin: 4px 0 0 1px;
   width: 25px;
 }
 .addBg {
   background: color.$nonVisible;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   height: 40px;
@@ -150,6 +158,7 @@ export default defineComponent({
 }
 .addBgFalse {
   background: color.$nonVisible;
+  border: none;
   border-radius: 50%;
   cursor: not-allowed;
   height: 40px;
@@ -158,7 +167,7 @@ export default defineComponent({
 .addIconFalse {
   color: color.$lightText;
   height: 25px;
-  margin: 7px 0 0 8px;
+  margin: 4px 0 0 1px;
   width: 25px;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <div :class="$style.sort">
-    <div
+    <button
       :class="[$style.list, { [$style.active]: newList === 'value' }]"
       @click="$emit('update:newList', 'value')">
       <p :class="$style.content">Sort by</p>
       <i :class="$style.bold">Value</i>
       <div :class="$style.circle" />
-    </div>
-    <div
+    </button>
+    <button
       :class="[$style.list, { [$style.active]: newList === 'time' }]"
       @click="$emit('update:newList', 'time')">
       <!--
@@ -17,7 +17,7 @@
       <p :class="$style.content">Sort by</p>
       <i :class="$style.bold">Added Date</i>
       <div :class="$style.circle" />
-    </div>
+    </button>
   </div>
 </template>
 
@@ -51,11 +51,16 @@ export default defineComponent({
   margin-right: 5px;
 }
 .list {
+  background: color.$nonVisible;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  height: 40px;
+  line-height: 1.6;
   margin-top: 5px;
   padding: 10px;
+  width: 100%;
   &:hover {
     background: color.$activeItem;
   }

@@ -14,12 +14,12 @@
     </div>
     <div :class="$style.options">
       <span :class="$style.date">{{ finalTime }}</span>
-      <div
+      <button
         :class="$style.trashBg"
         title="Delete"
         @click="$emit('remove', number)">
         <IconTrash :class="$style.trashIcon" />
-      </div>
+      </button>
     </div>
   </li>
 </template>
@@ -74,11 +74,12 @@ export default defineComponent({
 .trashIcon {
   color: color.$trash;
   height: 30px;
-  margin: 4px 0 0 10px;
+  margin: 3px 0 0 0px;
   width: 20px;
 }
 .trashBg {
   background: color.$nonVisible;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   display: none;
