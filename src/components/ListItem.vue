@@ -9,6 +9,7 @@
         <div>
           <span v-if="icon" :class="$style.exact">Exact Match</span>
           <span :class="$style.number">{{ '#' + number }}</span>
+          <!-- pro text přenášející hodnotu je <p></p>, pro text nesoucí krátké spojení (popsání funkce) je <span></span> -->
         </div>
       </div>
     </div>
@@ -20,6 +21,7 @@
         @click="$emit('remove', number)">
         <IconTrash :class="$style.trashIcon" />
       </button>
+      <!-- na běžný klikání je <button></button> tomu se pak přizpůsobuje type, na odkazování je <a></a> -->
     </div>
   </li>
 </template>

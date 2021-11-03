@@ -44,7 +44,6 @@ export default defineComponent({
 }
 .bold {
   color: color.$boldText;
-  font-style: normal;
 }
 .content {
   color: color.$lightText;
