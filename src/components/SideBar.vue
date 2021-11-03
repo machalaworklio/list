@@ -1,7 +1,11 @@
 <template>
   <div :class="$style.sort">
     <button
-      :class="[$style.list, { [$style.active]: newList === 'value' }]"
+      :class="[
+        $style.list,
+        $style.listSpace,
+        { [$style.active]: newList === 'value' },
+      ]"
       @click="$emit('update:newList', 'value')">
       <span :class="$style.content">Sort by</span>
       <span :class="$style.bold">Value</span>
@@ -50,26 +54,29 @@ export default defineComponent({
   margin-right: 5px;
 }
 .list {
+  align-items: center;
   background: color.$nonVisible;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  font-size: 13px;
   height: 40px;
-  line-height: 1.6;
-  margin-top: 5px;
-  padding: 10px;
+  padding: 0 15px;
   width: 100%;
   &:hover {
     background: color.$activeItem;
   }
+}
+.listSpace {
+  margin-bottom: 5px;
 }
 .circle {
   background: color.$true;
   border-radius: 50%;
   display: none;
   height: 4px;
-  margin: 8px 0px 0 auto;
+  margin: 0 3px 0 auto;
   width: 4px;
 }
 .active {

@@ -4,7 +4,7 @@
       <div :class="$style.checkBox">
         <IconCheck v-if="icon" :class="$style.checkIcon" />
       </div>
-      <div>
+      <div :class="$style.contentBox">
         <span :class="$style.content">{{ content }}</span>
         <div>
           <span v-if="icon" :class="$style.exact">Exact Match</span>
@@ -75,9 +75,9 @@ export default defineComponent({
 @use 'sass/color';
 .trashIcon {
   color: color.$trash;
-  height: 30px;
-  margin: 3px 0 0 0px;
-  width: 20px;
+  height: 24px;
+  margin: 3 0 0 0px;
+  width: 24px;
 }
 .trashBg {
   background: color.$nonVisible;
@@ -85,9 +85,8 @@ export default defineComponent({
   border-radius: 50%;
   cursor: pointer;
   display: none;
-  height: 40px;
-  margin: 7px 10px 0 0;
-  width: 40px;
+  height: 46px;
+  width: 46px;
   &:hover {
     background: color.$trash;
     .trashIcon {
@@ -95,13 +94,22 @@ export default defineComponent({
     }
   }
 }
+.date {
+  color: color.$boldText;
+  font-size: 13px;
+  padding: 0 10px;
+}
+.contentBox {
+  padding: 0 10px;
+}
 .listItem {
+  align-items: center;
   border-bottom: 1px solid color.$line;
   display: flex;
   height: 65px;
   justify-content: space-between;
   list-style: none;
-  padding: 5px;
+  padding: 0 10px;
   transition: 0.2s;
   width: 100%;
   &:hover {
@@ -112,28 +120,27 @@ export default defineComponent({
     .trashBg {
       display: block;
     }
+    .date {
+      justify-content: space-between;
+    }
   }
 }
 .info {
   display: flex;
-  margin: 8px 0 0 10px;
 }
 .options {
+  align-items: center;
   color: color.$boldText;
   display: flex;
 }
 .number {
   color: color.$lightText;
-  font-size: 13px;
+  font-size: 12px;
 }
 .exact {
   color: color.$true;
   font-size: 13px;
   margin: 0 5px 0 0;
-}
-.date {
-  color: color.$boldText;
-  margin: 17px 10px 0 0;
 }
 .checkIcon {
   color: color.$true;

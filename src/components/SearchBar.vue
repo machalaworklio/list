@@ -88,18 +88,22 @@ export default defineComponent({
   background: color.$searchBar;
   border: none;
   color: color.$boldText;
-  font-size: 15px;
+  font-family: inherit;
+  font-size: 14px;
   height: 60px;
   outline: none;
-  padding: 20px;
+  padding: 0 20px;
   width: 100%;
 }
 ::placeholder {
-  color: color.$lightText;
+  color: color.$searchText;
 }
 .searchIcons {
+  align-items: center;
   background: color.$searchBar;
-  width: 100px;
+  display: flex;
+  padding: 0 10px;
+  width: auto;
 }
 .searchBox {
   width: 100%;
@@ -112,23 +116,21 @@ export default defineComponent({
   background: color.$searchBarRadius;
   border-radius: 30px;
   display: flex;
-  height: 40px;
-  margin: 10px 10px 0 0;
-  width: 80px;
+  height: 46px;
 }
 .cancelIcon {
   color: color.$trash;
-  height: 25px;
-  margin: 4px 0 0 1px;
-  width: 25px;
+  height: 24px;
+  margin: 3px 0 0 0;
+  width: 24px;
 }
 .cancelBg {
   background: color.$nonVisible;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
   &:hover {
     background: color.$trash;
     & .cancelIcon {
@@ -138,17 +140,17 @@ export default defineComponent({
 }
 .addIcon {
   color: color.$true;
-  height: 25px;
-  margin: 4px 0 0 1px;
-  width: 25px;
+  height: 24px;
+  margin: 3px 0 0 0;
+  width: 24px;
 }
 .addBg {
   background: color.$nonVisible;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
   &:hover {
     background: color.$true;
     & .addIcon {
