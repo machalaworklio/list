@@ -23,9 +23,12 @@
           :icon="list.icon"
           @remove="removeList" />
       </ul>
+      <!--
+      // empty list info
       <div v-if="lists.length === 0" :class="$style.emptyBox">
         <p :class="$style.emptyList">empty list</p>
       </div>
+      -->
     </div>
     <SideBar v-model:newList="sortBy" />
     <!--
@@ -58,14 +61,6 @@ export default defineComponent({
       number: number;
       time: string;
     }
-    const defaultData: listsType[] = [
-      // chci to použít jako pole (obashuje více proměných)
-      {
-        content: 'Hello',
-        number: 1,
-        time: formatISO(new Date()),
-      },
-    ];
     // date-fns: formatDistanceToNow, formatDistanceToNowStrict
     // getNow(), kam dát funkci
     // default
@@ -182,7 +177,6 @@ export default defineComponent({
       contentSorted,
       iconAdd,
       exactContent,
-      defaultData,
       addList,
       removeList,
       saveData,
@@ -197,7 +191,7 @@ export default defineComponent({
   display: flex;
 }
 .container {
-  margin: 100px 0 0 auto;
+  margin: 100px 0 0 560px;
   width: 800px;
 }
 .list {

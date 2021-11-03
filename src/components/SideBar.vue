@@ -43,7 +43,7 @@ export default defineComponent({
 <style lang="scss" module>
 @use 'sass/color';
 .sort {
-  margin: 180px auto 0 50px;
+  margin: 190px auto 0 60px;
   width: 200px;
 }
 .bold {
@@ -51,7 +51,7 @@ export default defineComponent({
 }
 .content {
   color: color.$lightText;
-  margin-right: 5px;
+  margin-right: 4px;
 }
 .list {
   align-items: center;
@@ -60,6 +60,7 @@ export default defineComponent({
   border-radius: 5px;
   cursor: pointer;
   display: flex;
+  font-family: inherit;
   font-size: 13px;
   height: 40px;
   padding: 0 15px;
