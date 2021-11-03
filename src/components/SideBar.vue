@@ -1,11 +1,7 @@
 <template>
   <div :class="$style.sort">
     <button
-      :class="[
-        $style.list,
-        $style.listSpace,
-        { [$style.active]: newList === 'value' },
-      ]"
+      :class="[$style.list, { [$style.active]: newList === 'value' }]"
       @click="$emit('update:newList', 'value')">
       <span :class="$style.content">Sort by</span>
       <span :class="$style.bold">Value</span>
@@ -43,8 +39,8 @@ export default defineComponent({
 <style lang="scss" module>
 @use 'sass/color';
 .sort {
-  margin: 190px auto 0 60px;
-  width: 200px;
+  margin: 190px 0 0 60px;
+  min-width: 200px;
 }
 .bold {
   color: color.$boldText;
@@ -68,9 +64,10 @@ export default defineComponent({
   &:hover {
     background: color.$activeItem;
   }
-}
-.listSpace {
-  margin-bottom: 5px;
+  // :last-child will not work if the element is not the VERY LAST element
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
 }
 .circle {
   background: color.$true;

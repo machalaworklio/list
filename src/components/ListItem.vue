@@ -76,7 +76,7 @@ export default defineComponent({
 .trashIcon {
   color: color.$trash;
   height: 24px;
-  margin: 3 0 0 0px;
+  margin: 3px 0 0 0px;
   width: 24px;
 }
 .trashBg {
@@ -96,6 +96,7 @@ export default defineComponent({
 }
 .date {
   color: color.$boldText;
+  font-family: inherit;
   font-size: 13px;
   padding: 0 10px;
 }
@@ -104,18 +105,21 @@ export default defineComponent({
 }
 .listItem {
   align-items: center;
-  border-bottom: 1px solid color.$line;
   display: flex;
-  height: 65px;
+  height: 70px;
   justify-content: space-between;
   list-style: none;
   padding: 0 10px;
   transition: 0.2s;
   width: 100%;
+  &:not(:last-child) {
+    border-bottom: 1px solid color.$line;
+  }
   &:hover {
     background: color.$activeItem;
-    border-radius: 5px;
-    box-shadow: 1px 1px 20px 1px #d6d6d6;
+    border-radius: 6px;
+    box-shadow: 0px 0px 40px rgba(#000, 0.05);
+    // offsex X, offset Y, blur-radius, color (#hex, alpha - %: [5% = 0.05])
     transition: 0.33s;
     .trashBg {
       display: block;
@@ -135,7 +139,12 @@ export default defineComponent({
 }
 .number {
   color: color.$lightText;
+  font-family: inherit;
   font-size: 12px;
+}
+.content {
+  font-family: inherit;
+  font-size: 14px;
 }
 .exact {
   color: color.$true;

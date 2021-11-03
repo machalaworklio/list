@@ -87,16 +87,18 @@ export default defineComponent({
 .search {
   background: color.$searchBar;
   border: none;
+  border-radius: 6px;
   color: color.$boldText;
   font-family: inherit;
   font-size: 14px;
   height: 60px;
+  margin: 0 0 30px 0;
   outline: none;
   padding: 0 20px;
   width: 100%;
-}
-::placeholder {
-  color: color.$searchText;
+  &::placeholder {
+    color: color.$searchText;
+  }
 }
 .searchIcons {
   align-items: center;
@@ -133,13 +135,13 @@ export default defineComponent({
   width: 46px;
   &:hover {
     background: color.$trash;
-    & .cancelIcon {
+    .cancelIcon {
       color: color.$activeItem;
     }
   }
 }
 .addIcon {
-  color: color.$true;
+  color: color.$searchTrue;
   height: 24px;
   margin: 3px 0 0 0;
   width: 24px;
@@ -152,8 +154,8 @@ export default defineComponent({
   height: 46px;
   width: 46px;
   &:hover {
-    background: color.$true;
-    & .addIcon {
+    background: color.$searchTrue;
+    .addIcon {
       color: color.$activeItem;
     }
   }
@@ -163,13 +165,13 @@ export default defineComponent({
   border: none;
   border-radius: 50%;
   cursor: not-allowed;
-  height: 40px;
-  width: 40px;
+  height: 46px;
+  width: 46px;
 }
 .addIconFalse {
-  color: color.$lightText;
-  height: 25px;
-  margin: 4px 0 0 1px;
-  width: 25px;
+  color: color.$searchFalse;
+  height: 24px;
+  margin: 3px 0 0 0;
+  width: 24px;
 }
 </style>

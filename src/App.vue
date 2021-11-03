@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.workspace">
+    <div :class="$style.sort" />
     <div :class="$style.container">
       <SearchBar
         v-model:newList="newList"
@@ -189,14 +190,17 @@ export default defineComponent({
 @use 'sass/color';
 .workspace {
   display: flex;
+  justify-content: center;
+}
+.sort {
+  margin: 190px 60px 0 0;
+  width: 200px;
 }
 .container {
-  margin: 100px 0 0 560px;
-  width: 800px;
+  margin-top: 100px;
+  min-width: 800px;
 }
 .list {
-  margin: 20px 0 0 0;
-  padding: 0;
   width: 100%;
 }
 .emptyBox {
