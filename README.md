@@ -14,7 +14,7 @@ npm run serve
 
 ## Requirements
 
-- List data should be stored in
+- DONE - List data should be stored in
   [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 - DONE - List should be sortable by either string value (a-z) or by added date
   (newest first)

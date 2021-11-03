@@ -1,12 +1,12 @@
 <template>
-  <div :class="$style.formContainer">
-    <form :class="$style.searchBarForm" @submit.prevent="addList">
+  <div :class="$style.container">
+    <form :class="$style.searchBox" @submit.prevent="addList">
       <!-- event se provede, dál nepokračuje -->
       <input
         :value="newList"
         name="newList"
         autocomplete="off"
-        :class="$style.searchBar"
+        :class="$style.search"
         placeholder="Search or Add..."
         @input="$emit('update:newList', $event.target.value)"
         @keydown.esc="$emit('update:newList', '')" />
@@ -21,19 +21,19 @@
           :class="$style.cancelBg"
           title="Clear"
           @click="$emit('update:newList', '')">
-          <IconCancel :class="$style.iconCancel" />
+          <IconCancel :class="$style.cancelIcon" />
         </div>
         <div v-if="iconAdd" :class="$style.addBg" title="Add" @click="addList">
-          <IconAdd :class="$style.iconAdd" />
+          <IconAdd :class="$style.addIcon" />
         </div>
         <div v-if="!iconAdd" :class="$style.addBgFalse">
-          <IconAdd :class="$style.iconAddFalse" />
+          <IconAdd :class="$style.addIconFalse" />
         </div>
       </div>
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { computed, defineComponent } from '@vue/runtime-core';
 import IconCancel from './IconCancel.vue';
 import IconAdd from './IconAdd.vue';
@@ -78,7 +78,7 @@ export default defineComponent({
 </script>
 <style lang="scss" module>
 @use 'sass/color';
-.searchBar {
+.search {
   background: color.$searchBar;
   border: none;
   height: 60px;
@@ -95,10 +95,10 @@ export default defineComponent({
   width: 100px;
   background: color.$searchBar;
 }
-.searchBarForm {
+.searchBox {
   width: 100%;
 }
-.formContainer {
+.container {
   width: 100%;
   display: flex;
 }
@@ -118,12 +118,12 @@ export default defineComponent({
   border-radius: 50%;
   &:hover {
     background: color.$trash;
-    & .iconCancel {
+    & .cancelIcon {
       color: color.$activeItem;
     }
   }
 }
-.iconCancel {
+.cancelIcon {
   height: 25px;
   margin: 7px 0 0 8px;
   width: 25px;
@@ -137,18 +137,17 @@ export default defineComponent({
   border-radius: 50%;
   &:hover {
     background: color.$true;
-    & .iconAdd {
+    & .addIcon {
       color: color.$activeItem;
     }
   }
 }
-.iconAdd {
+.addIcon {
   height: 25px;
   margin: 7px 0 0 8px;
   width: 25px;
   color: color.$true;
 }
-
 .addBgFalse {
   cursor: not-allowed;
   width: 40px;
@@ -156,7 +155,7 @@ export default defineComponent({
   background: color.$nonVisible;
   border-radius: 50%;
 }
-.iconAddFalse {
+.addIconFalse {
   height: 25px;
   margin: 7px 0 0 8px;
   width: 25px;

@@ -1,21 +1,21 @@
 <template>
   <div :class="$style.sort">
     <div
-      :class="[$style.sortBy, { [$style.active]: newList === 'value' }]"
+      :class="[$style.list, { [$style.active]: newList === 'value' }]"
       @click="$emit('update:newList', 'value')">
       <p :class="$style.content">Sort by</p>
-      <i :class="$style.boldText">Value</i>
+      <i :class="$style.bold">Value</i>
       <div :class="$style.circle" />
     </div>
     <div
-      :class="[$style.sortBy, { [$style.active]: newList === 'time' }]"
+      :class="[$style.list, { [$style.active]: newList === 'time' }]"
       @click="$emit('update:newList', 'time')">
       <!--
       1. @event="$emit("název", hodnota)
       2. time -> value, "time" -> string
       --->
       <p :class="$style.content">Sort by</p>
-      <i :class="$style.boldText">Added Date</i>
+      <i :class="$style.bold">Added Date</i>
       <div :class="$style.circle" />
     </div>
   </div>
@@ -42,7 +42,7 @@ export default defineComponent({
   margin: 180px auto 0 50px;
   width: 200px;
 }
-.boldText {
+.bold {
   color: color.$boldText;
   font-style: normal;
 }
@@ -50,7 +50,7 @@ export default defineComponent({
   color: color.$lightText;
   margin-right: 5px;
 }
-.sortBy {
+.list {
   border-radius: 5px;
   cursor: pointer;
   padding: 10px;
