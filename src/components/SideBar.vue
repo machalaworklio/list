@@ -3,8 +3,8 @@
     <button
       :class="[$style.list, { [$style.active]: newList === 'value' }]"
       @click="$emit('update:newList', 'value')">
-      <p :class="$style.content">Sort by</p>
-      <i :class="$style.bold">Value</i>
+      <span :class="$style.content">Sort by</span>
+      <span :class="$style.bold">Value</span>
       <div :class="$style.circle" />
     </button>
     <button
@@ -14,8 +14,8 @@
       1. @event="$emit("název", hodnota)
       2. time -> value, "time" -> string
       --->
-      <p :class="$style.content">Sort by</p>
-      <i :class="$style.bold">Added Date</i>
+      <span :class="$style.content">Sort by</span>
+      <span :class="$style.bold">Added Date</span>
       <div :class="$style.circle" />
     </button>
   </div>
