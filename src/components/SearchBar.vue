@@ -92,12 +92,11 @@ export default defineComponent({
   font-family: inherit;
   font-size: 14px;
   height: 60px;
-  margin: 0 0 30px 0;
   outline: none;
   padding: 0 20px;
   width: 100%;
   &::placeholder {
-    color: color.$searchText;
+    color: rgba(color.$searchText, 1);
   }
 }
 .searchIcons {
@@ -112,6 +111,7 @@ export default defineComponent({
 }
 .container {
   display: flex;
+  margin-bottom: 30px;
   width: 100%;
 }
 .iconRadius {

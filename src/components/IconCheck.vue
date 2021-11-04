@@ -23,6 +23,5 @@ import { defineComponent } from '@vue/runtime-core';
 
 export default defineComponent({
   name: 'IconCheck',
-  emits: ['delete'],
 });
 </script>

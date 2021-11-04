@@ -79,7 +79,7 @@ export default defineComponent({
 }
 .active {
   background: color.$activeItem;
-  & .circle {
+  .circle {
     display: block;
   }
 }

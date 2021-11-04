@@ -197,20 +197,10 @@ export default defineComponent({
   width: 200px;
 }
 .container {
-  margin-top: 100px;
+  margin: 100px 0 0 0;
   min-width: 800px;
 }
 .list {
-  width: 100%;
-}
-.emptyBox {
-  margin-top: 30px;
-  text-align: center;
-  width: 100%;
-}
-.emptyList {
-  color: color.$lightText;
-  justify-content: center;
   width: 100%;
 }
 </style>
