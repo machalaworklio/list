@@ -120,6 +120,9 @@ export default defineComponent({
   display: flex;
   margin-bottom: 30px;
   width: 100%;
+  &:focus-within {
+    background: color.$activeItem;
+  }
 }
 .iconRadius {
   background: color.$searchBarRadius;
