@@ -85,9 +85,8 @@ export default defineComponent({
 <style lang="scss" module>
 @use 'sass/color';
 .search {
-  background: color.$searchBar;
+  background: color.$nonVisible;
   border: none;
-  border-radius: 6px;
   color: color.$boldText;
   font-family: inherit;
   font-size: 14px;
@@ -96,12 +95,13 @@ export default defineComponent({
   padding: 0 20px;
   width: 100%;
   &::placeholder {
-    color: rgba(color.$searchText, 1);
+    color: color.$searchText;
+    opacity: 1;
   }
 }
 .searchIcons {
   align-items: center;
-  background: color.$searchBar;
+  background: color.$nonVisible;
   display: flex;
   padding: 0 10px;
   width: auto;
@@ -110,6 +110,8 @@ export default defineComponent({
   width: 100%;
 }
 .container {
+  background: color.$searchBar;
+  border-radius: 6px;
   display: flex;
   margin-bottom: 30px;
   width: 100%;
