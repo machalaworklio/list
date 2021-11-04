@@ -97,6 +97,11 @@ export default defineComponent({
   &::placeholder {
     color: color.$searchText;
     opacity: 1;
+    /*
+    1. pseudo elementy si každej prohlížeč v podstatě styluje sám,
+       jsou tam mezi prohlížečema rozdíly, tohle je jeden rozdíl
+    2. firefox má světlejší barvu přes opacity, chromium přes rgba
+    */
   }
 }
 .searchIcons {
