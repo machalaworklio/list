@@ -66,9 +66,10 @@ export default defineComponent({
     // getNow(), kam dát funkci
     // default
     const getItem = localStorage.getItem('newListStorage');
-    const removeItem = localStorage.removeItem('newListStorage');
 
-    const lists = ref<listsType[]>(getItem ? JSON.parse(getItem) : removeItem);
+    const lists = ref<listsType[]>(getItem ? JSON.parse(getItem) : []);
+    // condition? true : false
+
     /*
     // možnost 1
     1. varianta - uložení
@@ -170,6 +171,9 @@ export default defineComponent({
       // JSON.stringify - vezme objekt a vrátí string
       localStorage.setItem('newListStorage', storageData);
       // přidání hodnoty do lokální paměěti
+      if (lists.value.length === 0) {
+        window.localStorage.removeItem('newListStorage');
+      }
     }
     return {
       lists,
@@ -205,6 +209,3 @@ export default defineComponent({
   width: 100%;
 }
 </style>
-
-function remove(getItem: string|null): listsType[] { throw new Error('Function
-not implemented.'); }
