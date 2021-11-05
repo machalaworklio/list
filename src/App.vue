@@ -55,7 +55,8 @@ export default defineComponent({
   emits: ['delete'],
   setup() {
     const newList = ref('');
-
+    const searchDeafault = ref(0);
+    const searchFocus = ref(true);
     const sortBy = ref<'value' | 'time'>('time');
     interface listsType {
       content: string;
@@ -178,11 +179,12 @@ export default defineComponent({
     return {
       lists,
       newList,
-      contentSearch,
+      searchFocus,
       sortBy,
       contentSorted,
       iconAdd,
       exactContent,
+      searchDeafault,
       addList,
       removeList,
       saveData,

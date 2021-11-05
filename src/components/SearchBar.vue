@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.container">
+  <div :class="[$style.container, { [$style.active]: searchFocus === true }]">
     <form :class="$style.searchBox" @submit.prevent="addList">
       <!-- event se provede, dál nepokračuje -->
       <input
@@ -9,10 +9,15 @@
         :class="$style.search"
         placeholder="Search or Add..."
         @input="$emit('update:newList', $event.target.value)"
-        @keydown.esc="$emit('update:newList', '')" />
+        @keydown.esc="$emit('update:newList', '')"
+        @focus="searchFocus = true"
+        @blur="searchFocus = false" />
       <!--
       1: $emit("emit") - musí obsahovat update: -> ("update:emit")
-      2: $event je ten event kterej se zavolal, $event.target je html element toho eventu, a $event.target.value je hodnota toho inputu
+      2: $event je ten event kterej se zavolal,
+            $event.target je html element toho eventu,
+            $event.target.value je hodnota toho inputu
+      3: The opposite of focus is blur
     --></form>
     <div v-if="deleteIcon" :class="$style.searchIcons">
       <div :class="$style.iconRadius">
@@ -38,9 +43,12 @@
       </div>
     </div>
   </div>
+  <!-- search bar in focus test, console is not reactive
+    {{ searchFocus }}
+  -->
 </template>
 <script lang="ts">
-import { computed, defineComponent } from '@vue/runtime-core';
+import { ref, computed, defineComponent } from '@vue/runtime-core';
 import IconCancel from './IconCancel.vue';
 import IconAdd from './IconAdd.vue';
 
@@ -75,8 +83,11 @@ export default defineComponent({
         emit('update:newList', '');
       }
     }
+    // ref is reactive
+    const searchFocus = ref(false);
     return {
       deleteIcon,
+      searchFocus,
       addList,
     };
   },
@@ -120,9 +131,12 @@ export default defineComponent({
   display: flex;
   margin-bottom: 30px;
   width: 100%;
+  /*
   &:focus-within {
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within
     background: color.$activeItem;
   }
+  */
 }
 .iconRadius {
   background: color.$searchBarRadius;
@@ -183,5 +197,8 @@ export default defineComponent({
   height: 24px;
   margin: 3px 0 0 0;
   width: 24px;
+}
+.active {
+  background: color.$activeItem;
 }
 </style>
